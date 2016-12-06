@@ -12,7 +12,7 @@
    <ul>
       <% if(typeof items == 'object' && items){ %>
          <% for(item in items){ %>
-         <li><%= items[item]._id %></li>
+         <li><a href="items/update/<%= items[item]._id %>"><%= items[item]._id %></a></li>
          <li><%= items[item].name %></li>
          <li><%= items[item].age %></li>
          <hr>
@@ -20,6 +20,7 @@
       <% } %>
    </ul>
 </div>
+<p><a href="/items">add an item</a></p>
 
 </body>
 
