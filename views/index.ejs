@@ -10,10 +10,10 @@
 
 <div id='results'>
    <ul>
-      <% if(typeof users == 'object' && users){ %>
-         <% for(user in users){ %>
-         <li><%= users[user].name %></li>
-         <li><%= users[user].age %></li>
+      <% if(typeof items == 'object' && items){ %>
+         <% for(item in items){ %>
+         <li><%= items[item].name %></li>
+         <li><%= items[item].age %></li>
          <% } %>
       <% } %>
    </ul>
@@ -21,7 +21,7 @@
 
 
 <div>
-   <form id="user" action="/users" method="post">
+   <form id="item" action="/items" method="post">
       <input type="text" name="name"><br/>
       <input type="text" name="age"><br/>
       <button class='user_submit'>submit</button>

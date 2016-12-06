@@ -6,7 +6,7 @@ mongoose.connect(db,function(){
    console.log('mongoose connected');
 });
 
-var UserSchema = new mongoose.Schema({
+var ItemSchema = new mongoose.Schema({
  name: String,
  age: {type: Number}
 });
@@ -15,4 +15,4 @@ var UserSchema = new mongoose.Schema({
 // var User = mongoose.model('User') // We are retrieving this Schema from our Models, named 'User'
 // module.exports = User;
 // Instead, do this...
-module.exports = mongoose.model('user',UserSchema);
+module.exports = mongoose.model('item',ItemSchema);

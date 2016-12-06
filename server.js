@@ -13,25 +13,60 @@ app.set('views', __dirname + '/views');
 app.set('view engine','ejs');
 
 // our connection to the User model via Mongoose
-var User = require('./static/js/db.js');
+var Item = require('./static/js/db.js');
+
+
+
+// GET '/' Displays all of the mongooses.
+// GET '/mongooses/:id' Displays information about one mongoose.
+// GET '/mongooses/new' Displays a form for making a new mongoose.
+// POST '/mongooses' Should be the action attribute for the form in the above route (GET '/mongooses/new').
+// GET '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
+// POST '/mongooses/:id' Should be the action attribute for the form in the above route (GET '/mongooses/edit/:id').
+// POST '/mongooses/destroy/:id' Should delete the mongoose from the database by ID.
+
 
 // ROUTES --------------------------------------
+
+// "/"
+// Root - show all
 app.get('/', function (req, res){
-   User.find({}, function(err, users) {
+   Item.find({}, function(err, data) {
       if(err){
          console.log('error ${err}');
       }else{
-         res.render('index',{users:users});
+         res.render('index',{items:data});
       }
    })
 });
 
-app.post('/users', function (req, res){
-   var user = new User({
+/*
+/items/:id
+A single item by ID
+*/
+app.get('/items/:id', function (req, res){
+   console.log('A single item by ID %d', req.params.id);
+   User.findOne({
+      $eq: {
+         id:req.params.id
+      }
+   }, function(err, data) {
+      if(err){
+         console.log('error ${err}');
+      }else{
+         res.render('index',{ items: data });
+      }
+   })
+});
+
+
+app.post('/items', function (req, res){
+   console.log('Create a new item.');
+   var item = new Item({
       name: req.body.name,
       age: req.body.age
    });
-   user.save(function(err){
+   item.save(function(err){
       if(err){
          console.log('error ${err}');
       }
