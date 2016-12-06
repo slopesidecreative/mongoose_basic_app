@@ -19,7 +19,13 @@ var User = require('./static/js/db.js');
 
 // ROUTES --------------------------------------
 app.get('/', function (req, res){
-  res.render('index');
+   User.find({}, function(err, users) {
+      if(err){
+         console.log('error ${err}');
+      }
+      console.log('users ',users);
+      res.render('index',{users:users});
+   })
 });
 
 app.post('/users', function (req, res){
@@ -32,7 +38,7 @@ app.post('/users', function (req, res){
          console.log('error ${err}');
       }
    })
-  res.render('index');
+  res.redirect('/');
 });
 
 // BEGIN listening for requests -----------------
