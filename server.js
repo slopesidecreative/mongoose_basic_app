@@ -93,7 +93,47 @@ app.get('/items/:id', function (req, res){
       }
    })
 });
+/* POST
+   /items/:id
+   Process editing an item by ID.
+*/
+app.post('/items/edit', function (req, res){
+   // pass the _id using hidden field in form
+   console.log('Process editing an by ID %d', req.params._id);
 
+
+   // Item.findOne(
+   //    {
+   //       _id: req.params.id
+   //    },
+   //    function(err, data) {
+   //    if(err){
+   //       console.log('error ${err}');
+   //    }else{
+   //       res.render('items',{ items: { data } });
+   //    }
+   // })
+});
+
+/* GET
+   /items/edit/:id
+   Form to edit an item by ID.
+*/
+app.get('/items/edit/:id', function (req, res){
+   console.log('A single item by ID %d', req.params.id);
+   Item.findOne(
+      {
+         _id: req.params.id
+      },
+      function(err, data) {
+      if(err){
+         console.log('error ${err}');
+      }else{
+         var queryString = 'edit'
+         res.render('edit',{ items: { data } });
+      }
+   })
+});
 
 
 

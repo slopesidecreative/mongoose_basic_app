@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title></title>
+<script type ="text/javascript" src="/js/jquery-3.1.1.js"></script>
+<script type ="text/javascript" src="/js/main.js"></script>
+</head>
+<body>
+<% if(typeof items == 'object' && items){ %>
+<div id='results'>
+   <ul>
+      <% for(item in items){ %>
+      <li><%= items[item]._id %></li>
+      <li><%= items[item].name %></li>
+      <li><%= items[item].age %></li>
+      <% } %>
+   </ul>
+</div>
+
+<div>
+   <h3>Edit:</h3>
+   <form id="item" action="/items/edit" method="post">
+      <input type="text" name="name" value="<%= items[item].name %>"><br/>
+      <input type="text" name="age" value="<%= items[item].age %>"><br/>
+      <input type='hidden' name="_id" value="<%= items[item]._id %>"
+      <button class='user_submit'>submit</button>
+   </form>
+</div>
+<% } %>
+
+</body>
+
+</html>
