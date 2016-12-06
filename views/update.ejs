@@ -7,7 +7,7 @@
 <script type ="text/javascript" src="/js/main.js"></script>
 </head>
 <body>
-<% if(typeof items == 'object' && items){ %>
+<!-- <% if(typeof items == 'object' && items){ %>
 <div id='results'>
    <ul>
       <% for(item in items){ %>
@@ -16,15 +16,15 @@
       <li><%= items[item].age %></li>
       <% } %>
    </ul>
-</div>
+</div> -->
 
 <div>
-   <h3>Edit:</h3>
-   <form id="item" action="/items/edit" method="post">
+   <h3>Update:</h3>
+   <form id="edit" action="/items/update" method="post">
       <input type="text" name="name" value="<%= items[item].name %>"><br/>
       <input type="text" name="age" value="<%= items[item].age %>"><br/>
-      <input type='hidden' name="_id" value="<%= items[item]._id %>"
-      <button class='user_submit'>submit</button>
+      <input type='hidden' name="_id" value="<%= items[item]._id %>"><br/>
+      <button type="submit">submit</button>
    </form>
 </div>
 <% } %>
