@@ -97,16 +97,18 @@ app.post('/items/update', function (req, res){
    Form to edit an item by ID.
 */
 app.get('/items/update/:id', function (req, res){
-   console.log('Form to update an item by ID %d', req.params.id);
+   console.log('Form to update an item by ID %s', req.params.id);
    Item.findOne(
       {
          _id: req.params.id
       },
       function(err, data) {
+         console.log('found to update: ',data);
       if(err){
          console.log('error ${err}');
       }else{
-         res.render('update');
+         var d = [data];
+         res.render('update', {items: d} );
       }
    })
 });

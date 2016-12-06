@@ -10,10 +10,11 @@
 
 <div>
    <h3>Update:</h3>
+<% if(typeof items == 'object' && items){ %>
    <form id="edit" action="/items/update" method="post">
-      <input type="text" name="name" value="<%= items[item].name %>"><br/>
-      <input type="text" name="age" value="<%= items[item].age %>"><br/>
-      <input type='hidden' name="_id" value="<%= items[item]._id %>"><br/>
+      <input type="text" name="name" value="<%= items[0].name %>"><br/>
+      <input type="text" name="age" value="<%= items[0].age %>"><br/>
+      <input type='hidden' name="_id" value="<%= items[0]._id %>"><br/>
       <button type="submit">submit</button>
    </form>
 </div>
