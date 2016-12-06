@@ -9,17 +9,23 @@
 </head>
 <body>
 
+<div id='results'>
+   <ul>
+      <% for(user in users){ %>
+      <li><%= users[user].name %></li>
+      <li><%= users[user].age %></li>
+   <% } %>
+   </ul>
+</div>
+<div>
+   <form id="user" action="/users" method="post">
+      <input type="text" name="name"><br/>
+      <input type="text" name="18"><br/>
+      <button class='user_submit'>submit</button>
+   </form>
+</div>
+<div>
+</div>
 </body>
-
-<div id='results'></div>
-
-<form id="add" name="add" method="post">
-   <button class='user_submit'>add</button>
-</form>
-
-<form id="reset_count" name="add" method="post">
-   <button>reset</button>
-</form>
-
 
 </html>
