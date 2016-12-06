@@ -7,30 +7,27 @@
 <script type ="text/javascript" src="/js/main.js"></script>
 </head>
 <body>
-
+<% if(typeof items == 'object' && items){ %>
 <div id='results'>
    <ul>
-      <% if(typeof items == 'object' && items){ %>
-         <% for(item in items){ %>
-         <li><%= items[item]._id %></li>
-         <li><%= items[item].name %></li>
-         <li><%= items[item].age %></li>
-         <hr>
-         <% } %>
+      <% for(item in items){ %>
+      <li><%= items[item]._id %></li>
+      <li><%= items[item].name %></li>
+      <li><%= items[item].age %></li>
       <% } %>
    </ul>
 </div>
-
-
+      <% }else{ %>
 <div>
+   <h3>Why not add another?</h3>
    <form id="item" action="/items" method="post">
       <input type="text" name="name"><br/>
       <input type="text" name="age"><br/>
       <button class='user_submit'>submit</button>
    </form>
 </div>
-<div>
-</div>
+<% } %>
+
 </body>
 
 </html>

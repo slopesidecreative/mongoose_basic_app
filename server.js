@@ -39,29 +39,12 @@ app.get('/', function (req, res){
       }
    })
 });
-
-/*
-/items/:id
-A single item by ID
+/* POST
+   /items
+   Create a new item based on form submission.
 */
-app.get('/items/:id', function (req, res){
-   console.log('A single item by ID %d', req.params.id);
-   User.findOne({
-      $eq: {
-         id:req.params.id
-      }
-   }, function(err, data) {
-      if(err){
-         console.log('error ${err}');
-      }else{
-         res.render('index',{ items: data });
-      }
-   })
-});
-
-
 app.post('/items', function (req, res){
-   console.log('Create a new item.');
+   console.log('Create: action');
    var item = new Item({
       name: req.body.name,
       age: req.body.age
@@ -73,6 +56,48 @@ app.post('/items', function (req, res){
       res.redirect('/');
    })
 });
+/* GET
+   /items
+   Form for creating a new item.
+*/
+app.get('/items', function (req, res){
+   console.log('Create: form.');
+   // var item = new Item({
+   //    name: req.body.name,
+   //    age: req.body.age
+   // });
+   // item.save(function(err){
+   //    if(err){
+   //       console.log('error ${err}');
+   //    }
+   //    res.redirect('/');
+   // })
+   res.render('items');
+});
+
+/* GET
+   /items/:id
+   View a single item by ID.
+*/
+app.get('/items/:id', function (req, res){
+   console.log('A single item by ID %d', req.params.id);
+   Item.findOne(
+      {
+         _id: req.params.id
+      },
+      function(err, data) {
+      if(err){
+         console.log('error ${err}');
+      }else{
+         res.render('items',{ items: { data } });
+      }
+   })
+});
+
+
+
+
+
 
 // BEGIN listening for requests -----------------
 var server = app.listen(port,function(){
