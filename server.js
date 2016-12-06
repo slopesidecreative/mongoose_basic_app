@@ -3,7 +3,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var port = 8000;
 
-
 // for parsing the POST body
 app.use(bodyParser.urlencoded({extended: true}));
 // set the static directory
@@ -13,18 +12,17 @@ app.set('views', __dirname + '/views');
 // set EJS as the templating engine
 app.set('view engine','ejs');
 
-// our connection to the Users model via Mongoose
+// our connection to the User model via Mongoose
 var User = require('./static/js/db.js');
-
 
 // ROUTES --------------------------------------
 app.get('/', function (req, res){
    User.find({}, function(err, users) {
       if(err){
          console.log('error ${err}');
+      }else{
+         res.render('index',{users:users});
       }
-      console.log('users ',users);
-      res.render('index',{users:users});
    })
 });
 
@@ -37,8 +35,8 @@ app.post('/users', function (req, res){
       if(err){
          console.log('error ${err}');
       }
+      res.redirect('/');
    })
-  res.redirect('/');
 });
 
 // BEGIN listening for requests -----------------
